@@ -1,0 +1,37 @@
+.NavbarSelector{
+    background: #5FA8D3 !important;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    height: 70px;
+    cursor: default;
+}
+
+.NavLinks{
+    font-size: 18px;
+}
+
+.Active{
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 3px solid white !important;
+}
+#NavLinks{
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+#NavbarText{
+    color: white !important;
+}
+
+.nav-link{
+    cursor: pointer;
+}
+
+.Inactive{
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+}

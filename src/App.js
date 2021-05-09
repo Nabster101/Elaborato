@@ -1,29 +1,22 @@
 import './App.css';
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import NavbarHome from './components/Navbar/Navbar';
-import CarouselHome from './components/Carousel/Carousel'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Presentation from "./components/Presentation/Presentation";
-import Visite from "./components/Visite/Visite";
-import Footer from "./components/Footer/Footer";
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import 'font-awesome/css/font-awesome.min.css';
-import LoginSection from "./components/LoginSection/LoginSection";
+import Home from "./Home";
+import Login from "./Login";
+import Signup from "./Signup";
 
 function App (){
    return (
         <div className="App">
           <Router>
-            <Switch>
-              <Route path="/">
-                <Redirect to="/home" />
-                <NavbarHome/>
-                <CarouselHome/>
-                <Presentation/>
-                <Visite/>
-                <Footer />
-              </Route>
-            </Switch>
+              <Redirect from="/" to="/home" />
+              <Switch>
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/iscriviti" component={Signup}/>
+              </Switch>
           </Router>
         </div>
     );

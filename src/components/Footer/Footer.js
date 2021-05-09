@@ -17,10 +17,10 @@ function Footer (){
                         <Container className="FooterLinkContainer">
                             <Row className="justify-content-center">
                                 <Col>
-                                    <LinkScroll to="Home"  activeClass="Active" className="Inactive GridItem" spy={true} smooth={true} duration={100} offset={-300}>Home</LinkScroll>
+                                    <LinkScroll to="Home" activeClass="Active" className="Inactive GridItem" spy={true} smooth={true} duration={100} offset={-300}>Home</LinkScroll>
                                 </Col>
                                 <Col>
-                                    <LinkScroll to="Visite"  activeClass="Active" className="Inactive GridItem" spy={true} smooth={true} duration={100} offset={-300}>Visite</LinkScroll>
+                                    <LinkScroll to="Visite" activeClass="Active" className="Inactive GridItem" spy={true} smooth={true} duration={100} offset={-300}>Visite</LinkScroll>
                                 </Col>
                             </Row>
                             <Row className="justify-content-center">

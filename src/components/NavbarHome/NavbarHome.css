@@ -1,6 +1,6 @@
 .NavbarSelector{
     background: #5FA8D3 !important;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     height: 70px;

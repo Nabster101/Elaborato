@@ -1,15 +1,15 @@
 import React from 'react'
-import {Navbar, Nav, Container } from 'react-bootstrap'
+import { Navbar, Nav, Container } from 'react-bootstrap'
 import { Link as LinkScroll } from "react-scroll"
-import { Link } from "react-router-dom"
-import "./Navbar.css"
+import {Link, NavLink} from "react-router-dom"
+import "./NavbarSite.css"
 
-function NavbarHome(){
+function NavbarSite(){
     return(
         <div className="NavbarSection">
             <Navbar className="NavbarSelector" fixed="top" expand="lg">
                 <Container>
-                    <Navbar.Brand id="NavbarText" href="#home">
+                    <Navbar.Brand id="NavbarText" href="/home">
                         <img
                             alt=""
                             src="/logo.svg"
@@ -22,10 +22,10 @@ function NavbarHome(){
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <LinkScroll to="Home" activeClass="Active" className="nav-link Inactive" spy={true} smooth={true} duration={100} offset={-300} id="NavLinks">Home</LinkScroll>
-                            <LinkScroll to="Visite" activeClass="Active" className="nav-link Inactive" spy={true} smooth={true} duration={100} offset={-100} id="NavLinks">Visite</LinkScroll>
-                            <Link id="NavLinks" to="/login" className="Inactive nav-link" activeClassName="Active">Login</Link>
-                            <Link id="NavLinks" to="/iscriviti" className="Inactive nav-link" activeClassName="Active">Iscriviti</Link>
+                            <NavLink to="/home" activeClass="Active" className="nav-link Inactive" id="NavLinks">Home</NavLink>
+                            <NavLink to="/home" activeClass="Active" className="nav-link Inactive" id="NavLinks">Visite</NavLink>
+                            <NavLink to="/login" activeClassName="Active" className="Inactive nav-link" id="NavLinks">Login</NavLink>
+                            <NavLink to="/iscriviti" activeClassName="Active" className="Inactive nav-link" id="NavLinks">Iscriviti</NavLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -34,4 +34,4 @@ function NavbarHome(){
     )
 }
 
-export default NavbarHome
+export default NavbarSite
