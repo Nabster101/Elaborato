@@ -5,7 +5,7 @@ import "./SignUpSection.css"
 class SignUpSection extends React.Component{
     render() {
         return(
-            <div className="LoginSection">
+            <div className="SignUpSection">
                 <div className="test">
                     <Particles
                         params={{
@@ -61,8 +61,8 @@ class SignUpSection extends React.Component{
                         }}
                     />
                 </div>
-                <div className="LoginContainer">
-                    <div className="LoginBox">
+                <div className="SignUpContainer">
+                    <div className="SignUpBox">
                         <form>
                             <h3>Iscriviti</h3>
 

@@ -2,17 +2,17 @@
     background: #242840;
 }
 
-.LoginContainer{
+.SignUpContainer{
     display: flex;
     justify-content: center;
     flex-direction: column;
     text-align: left;
     position: absolute;
-    bottom: 18%;
-    left: 38%;
+    bottom: 4%;
+    left: 37%;
 }
 
-.LoginBox{
+.SignUpBox{
     width: 450px;
     margin: auto;
     background: #ffffff;
@@ -23,7 +23,7 @@
 }
 
 
-.LoginContainer h3 {
+.SignUpContainer h3 {
     text-align: center;
     margin: 0;
     line-height: 1;
