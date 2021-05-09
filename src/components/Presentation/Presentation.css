@@ -1,0 +1,23 @@
+.PresentationContainer{
+    text-align: center;
+}
+
+.PresentationSection{
+    margin-top: 15vh
+}
+
+.Seperators{
+    background-color: black;
+    height: 0.5vh;
+    width: 15vh;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    display: inline-flex;
+    vertical-align: text-top;
+}
+
+.PresentationText{
+    font-size: 20px;
+    width: 685px;
+    margin: 0 auto;
+}

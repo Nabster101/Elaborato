@@ -1,0 +1,26 @@
+.CarouselImage{
+    height: 500px;
+    object-fit:cover;
+    width: 100%;
+}
+
+.CarouselCaption{
+    text-shadow: 1px 2px 3px black;
+}
+
+.carousel-control-next-icon, .carousel-control-prev-icon{
+    width: 3rem !important;
+    height: 3rem !important;
+}
+
+.CarouselSeperator{
+    background: #5FA8D3;
+    height: 165px;
+    box-shadow: 0px 10px 13px -7px #000000
+}
+
+.CarouselText{
+    font-size: 20px;
+    width: 595px;
+    margin: 0 auto;
+}

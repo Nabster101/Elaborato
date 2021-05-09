@@ -1,0 +1,27 @@
+.NavbarSelector{
+    background: #5FA8D3 !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 70px;
+}
+
+.NavLinks{
+    font-size: 18px;
+}
+
+.Active{
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 3px solid white;
+}
+#NavLinks{
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+#NavbarText{
+    color: white !important;
+}
+
