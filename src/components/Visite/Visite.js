@@ -5,7 +5,17 @@ import VisitCard2 from "../images/VisitCard2.jpg"
 
 function Visite (){
     return(
-        <div className="VisiteSection">
+        <div id="Visite" className="VisiteSection">
+            <Container className="VisiteTitleContainer">
+                <Row>
+                    <Col>
+                        <h1>Prenota una visita</h1>
+                        <div className="Seperators"></div>
+                        <div className="VisiteText">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque cupiditate deleniti eius est id in itaque iure, nihil officiis placeat, quibusdam quisquam quos, recusandae reiciendis rem repellat repellendus voluptate?</div>
+
+                    </Col>
+                </Row>
+            </Container>
             <Container className="VisiteContainer">
                 <Row className="jmt-5 justify-content-evenly">
                     {[...Array(3)].map((x, i) =>

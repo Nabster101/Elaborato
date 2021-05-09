@@ -1,5 +1,20 @@
 .VisiteSection{
     margin-top: 20vh;
-    margin-bottom: 20vh;
+}
+
+.Seperators{
+    background-color: black;
+    height: 0.5vh;
+    width: 15vh;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    display: inline-flex;
+    vertical-align: text-top;
+}
+
+.PresentationText{
+    font-size: 20px;
+    width: 685px;
+    margin: 0 auto;
 }
 

@@ -16,8 +16,17 @@
     vertical-align: text-top;
 }
 
-.PresentationText{
+.VisiteText{
     font-size: 20px;
     width: 685px;
-    margin: 0 auto;
+    margin: 0 auto 10vh;
+}
+
+.VisiteTitleContainer{
+    text-align: center;
+}
+
+.SignUpButton{
+    margin-top: 5vh;
+    font-size: 18px;
 }

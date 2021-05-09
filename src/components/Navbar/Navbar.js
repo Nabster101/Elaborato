@@ -1,12 +1,13 @@
 import React from 'react'
 import {Navbar, Nav, Container } from 'react-bootstrap'
-import { NavLink } from "react-router-dom";
+import { Link as LinkScroll } from "react-scroll"
+import { Link } from "react-router-dom"
 import "./Navbar.css"
 
 function NavbarHome(){
     return(
         <div className="NavbarSection">
-            <Navbar className="NavbarSelector" sticky={true} expand="lg">
+            <Navbar className="NavbarSelector" fixed="top" expand="lg">
                 <Container>
                     <Navbar.Brand id="NavbarText" href="#home">
                         <img
@@ -21,10 +22,10 @@ function NavbarHome(){
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <NavLink id="NavLinks" to="/home" className="Inactive nav-link" activeClassName="Active">Home</NavLink>
-                            <NavLink id="NavLinks" to="/visite" className="Inactive nav-link" activeClassName="Active">Visite</NavLink>
-                            <NavLink id="NavLinks" to="/login" className="Inactive nav-link" activeClassName="Active">Login</NavLink>
-                            <NavLink id="NavLinks" to="/iscriviti" className="Inactive nav-link" activeClassName="Active">Iscriviti</NavLink>
+                            <LinkScroll to="Home" activeClass="Active" className="nav-link Inactive" spy={true} smooth={true} duration={100} offset={-300} id="NavLinks">Home</LinkScroll>
+                            <LinkScroll to="Visite" activeClass="Active" className="nav-link Inactive" spy={true} smooth={true} duration={100} offset={-100} id="NavLinks">Visite</LinkScroll>
+                            <Link id="NavLinks" to="/login" className="Inactive nav-link" activeClassName="Active">Login</Link>
+                            <Link id="NavLinks" to="/iscriviti" className="Inactive nav-link" activeClassName="Active">Iscriviti</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

@@ -4,7 +4,8 @@ import {Col, Container, Row} from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faTwitter, faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faPhone, faEnvelope, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Link as LinkScroll } from "react-scroll"
 
 
 function Footer (){
@@ -16,10 +17,10 @@ function Footer (){
                         <Container className="FooterLinkContainer">
                             <Row className="justify-content-center">
                                 <Col>
-                                    <Link to="/home" className="GridItem">Home</Link>
+                                    <LinkScroll to="Home"  activeClass="Active" className="Inactive GridItem" spy={true} smooth={true} duration={100} offset={-300}>Home</LinkScroll>
                                 </Col>
                                 <Col>
-                                    <Link to="/visite" className="GridItem">Visite</Link>
+                                    <LinkScroll to="Visite"  activeClass="Active" className="Inactive GridItem" spy={true} smooth={true} duration={100} offset={-300}>Visite</LinkScroll>
                                 </Col>
                             </Row>
                             <Row className="justify-content-center">

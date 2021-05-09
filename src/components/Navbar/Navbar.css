@@ -4,6 +4,7 @@
     top: 0;
     z-index: 1000;
     height: 70px;
+    cursor: default;
 }
 
 .NavLinks{
@@ -13,7 +14,7 @@
 .Active{
     font-size: 18px;
     text-decoration: none;
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid white !important;
 }
 #NavLinks{
     color: white;
@@ -25,3 +26,12 @@
     color: white !important;
 }
 
+.nav-link{
+    cursor: pointer;
+}
+
+.Inactive{
+    font-size: 18px;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+}
