@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Presentation from "./components/Presentation/Presentation";
 import Visite from "./components/Visite/Visite";
 import Footer from "./components/Footer/Footer";
-
+import 'font-awesome/css/font-awesome.min.css';
 
 function App() {
   return (

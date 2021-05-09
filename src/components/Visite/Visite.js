@@ -1,11 +1,9 @@
 import React from "react";
 import "./Visite.css"
 import {Card, Col, Container, Row, Button } from "react-bootstrap";
-import VisitCard from "../images/VisitCard.jpg"
 import VisitCard2 from "../images/VisitCard2.jpg"
 
 function Visite (){
-    let objects;
     return(
         <div className="VisiteSection">
             <Container className="VisiteContainer">

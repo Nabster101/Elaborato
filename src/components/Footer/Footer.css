@@ -1,5 +1,66 @@
 .FooterSection{
-    width: 100%;
-    height: 250px;
     background: #5FA8D3;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    cursor: default;
 }
+
+.FooterCol{
+    margin-top: 4vh;
+}
+
+.GridItem{
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+.GridItem:hover{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    border-bottom: 1px solid white;
+}
+
+.FooterSocialTitle, .FooterContactsTitle{
+    font-size: 30px;
+    color: white;
+    font-weight: 500;
+}
+
+.FooterContainer{
+    text-align: center;
+}
+
+.SocialItem{
+    color: white;
+    font-size: 18px;
+}
+.FooterLinkContainer{
+    margin-top: 3vh;
+}
+
+.SocialLink{
+    text-decoration: none;
+    color: white;
+}
+
+.SocialLink:hover{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    border-bottom: 1px solid white;
+}
+
+.FooterRights{
+    color: white;
+}
+
+.FooterSeperator{
+    color: white;
+    height: 2px !important;
+    opacity: 0.5 !important;
+}
+
+
