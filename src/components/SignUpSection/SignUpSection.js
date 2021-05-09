@@ -88,7 +88,7 @@ class SignUpSection extends React.Component{
 
                             <button type="submit" className="InputFieldButton btn btn-primary btn-block">Iscriviti</button>
                             <p className="forgot-password text-right">
-                                Sei già registrato? Fai il <a href="#">login</a>
+                                Sei già registrato? Fai il login
                             </p>
                         </form>
                     </div>

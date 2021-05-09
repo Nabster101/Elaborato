@@ -1,5 +1,4 @@
 import React from "react";
-import Particles from "react-particles-js";
 import "./LoginSection.css"
 
 class LoginSection extends React.Component{

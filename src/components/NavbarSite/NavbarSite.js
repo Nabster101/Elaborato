@@ -1,7 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap'
-import { Link as LinkScroll } from "react-scroll"
-import {Link, NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import "./NavbarSite.css"
 
 function NavbarSite(){
