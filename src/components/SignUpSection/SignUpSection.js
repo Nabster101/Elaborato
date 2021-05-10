@@ -1,6 +1,7 @@
 import React from "react";
 import Particles from "react-particles-js";
 import "./SignUpSection.css"
+import {Link} from "react-router-dom";
 
 class SignUpSection extends React.Component{
     render() {
@@ -77,7 +78,7 @@ class SignUpSection extends React.Component{
                             </div>
 
                             <div className="form-group">
-                                <label>Indirizzo Email</label>
+                                <label>Indirizzo email</label>
                                 <input type="email" className="InputField form-control" placeholder="Inserisci il tuo indirizzo email" />
                             </div>
 
@@ -88,7 +89,7 @@ class SignUpSection extends React.Component{
 
                             <button type="submit" className="InputFieldButton btn btn-primary btn-block">Iscriviti</button>
                             <p className="forgot-password text-right">
-                                Sei già registrato? Fai il login
+                                Sei già registrato? Fai il <Link>login</Link>
                             </p>
                         </form>
                     </div>

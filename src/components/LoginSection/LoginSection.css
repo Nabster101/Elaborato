@@ -53,3 +53,15 @@
     width: 100%;
 }
 
+.custom-control-label{
+    margin-left: 1vh;
+    margin-bottom: 1vh;
+}
+
+@media screen and (min-width: 1400px){
+    .LoginContainer{
+        bottom: 22%;
+        left: 38%;
+    }
+}
+
