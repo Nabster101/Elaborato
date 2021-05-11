@@ -22,8 +22,8 @@ function NavbarHome(){
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <LinkScroll to="Home" activeClass="Active" className="nav-link Inactive" spy={true} smooth={true} duration={100} offset={-300} id="NavLinks">Home</LinkScroll>
-                            <LinkScroll to="Visite" activeClass="Active" className="nav-link Inactive" spy={true} smooth={true} duration={100} offset={-100} id="NavLinks">Visite</LinkScroll>
+                            <LinkScroll to="Home" activeClassName="Active" className="nav-link Inactive" spy={true} smooth={true} duration={100} offset={-300} id="NavLinks">Home</LinkScroll>
+                            <LinkScroll to="Visite" activeClassName="Active" className="nav-link Inactive" spy={true} smooth={true} duration={100} offset={-100} id="NavLinks">Visite</LinkScroll>
                             <Link id="NavLinks" to="/login" className="Inactive nav-link" activeClassName="Active">Login</Link>
                             <Link id="NavLinks" to="/iscriviti" className="Inactive nav-link" activeClassName="Active">Iscriviti</Link>
                         </Nav>

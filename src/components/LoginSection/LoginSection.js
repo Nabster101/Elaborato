@@ -1,98 +1,116 @@
-import React from "react";
+import React, {useState} from "react";
 import "./LoginSection.css"
 import Particles from "react-particles-js";
 import {Link} from "react-router-dom";
+import Axios from "axios";
 
-class LoginSection extends React.Component{
-    render() {
-        return(
-            <div className="LoginSection">
-                <div className="test">
-                    <Particles
-                        params={{
-                            "particles": {
-                                "number": {
-                                    "value": 160,
-                                    "density": {
-                                        "enable": false
-                                    }
-                                },
-                                "size": {
-                                    "value": 3,
-                                    "random": true,
-                                    "anim": {
-                                        "speed": 4,
-                                        "size_min": 0.3
-                                    }
-                                },
-                                "line_linked": {
+function LoginSection() {
+
+    const [emailUser, setEmailUser] = useState("");
+    const [passwordUser, setPasswordUser] = useState("");
+    const [loginStatus, setLoginStatus] = useState("");
+
+    const login = () => {
+        Axios.post("http://localhost:3001/login", {
+            emailUser: emailUser,
+            passwordUser: passwordUser,
+        }).then((response) => {
+            if (response.data.message) {
+                setLoginStatus(response.data.message);
+            } else {
+                setLoginStatus(response.data[0].Email);
+            }
+        });
+    };
+
+    return(
+        <div className="LoginSection">
+            <div className="test">
+                <Particles
+                    params={{
+                        "particles": {
+                            "number": {
+                                "value": 160,
+                                "density": {
                                     "enable": false
-                                },
-                                "move": {
-                                    "random": true,
-                                    "speed": 1,
-                                    "direction": "top",
-                                    "out_mode": "out"
                                 }
                             },
-                            "interactivity": {
-                                "events": {
-                                    "onhover": {
-                                        "enable": false,
-                                        "mode": "bubble"
-                                    },
-                                    "onclick": {
-                                        "enable": false,
-                                        "mode": "repulse"
-                                    }
+                            "size": {
+                                "value": 3,
+                                "random": true,
+                                "anim": {
+                                    "speed": 4,
+                                    "size_min": 0.3
+                                }
+                            },
+                            "line_linked": {
+                                "enable": false
+                            },
+                            "move": {
+                                "random": true,
+                                "speed": 1,
+                                "direction": "top",
+                                "out_mode": "out"
+                            }
+                        },
+                        "interactivity": {
+                            "events": {
+                                "onhover": {
+                                    "enable": false,
+                                    "mode": "bubble"
                                 },
-                                "modes": {
-                                    "bubble": {
-                                        "distance": 250,
-                                        "duration": 2,
-                                        "size": 0,
-                                        "opacity": 0
-                                    },
-                                    "repulse": {
-                                        "distance": 400,
-                                        "duration": 4
-                                    }
+                                "onclick": {
+                                    "enable": false,
+                                    "mode": "repulse"
+                                }
+                            },
+                            "modes": {
+                                "bubble": {
+                                    "distance": 250,
+                                    "duration": 2,
+                                    "size": 0,
+                                    "opacity": 0
+                                },
+                                "repulse": {
+                                    "distance": 400,
+                                    "duration": 4
                                 }
                             }
-                        }}
-                    />
-                </div>
-                <div className="LoginContainer">
-                    <div className="LoginBox">
-                        <form>
-                            <h3>Login</h3>
+                        }
+                    }}
+                />
+            </div>
+            <div className="LoginContainer">
+                <div className="LoginBox">
+                    <div>
+                        <h3>Login</h3>
 
-                            <div className="form-group">
-                                <label>Indirizzo email</label>
-                                <input type="email" className="InputField form-control" placeholder="Inserisci il tuo indirizzo email" />
+                        <div className="form-group">
+                            <label>Indirizzo email</label>
+                            <input type="email" onChange={(e)=> {setEmailUser(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo indirizzo email" />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input type="password" onChange={(e)=> {setPasswordUser(e.target.value)}} className="InputField form-control" placeholder="Inserisci la tua password" />
+                        </div>
+
+                        <div className="form-group">
+                            <div className="custom-control custom-checkbox">
+                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                <label className="custom-control-label" htmlFor="customCheck1">Ricordami</label>
                             </div>
+                        </div>
 
-                            <div className="form-group">
-                                <label>Password</label>
-                                <input type="password" className="InputField form-control" placeholder="Inserisci la tua password" />
-                            </div>
-
-                            <div className="form-group">
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                                    <label className="custom-control-label" htmlFor="customCheck1">Ricordami</label>
-                                </div>
-                            </div>
-
-                            <button type="submit" className="InputFieldButton btn btn-primary btn-block">Entra</button>
-                            <p className="forgot-password text-right">
-                                Dimenticato la <Link href="#">password?</Link>
-                            </p>
-                        </form>
+                        <button onClick={login} className="InputFieldButton btn btn-primary btn-block">Entra</button>
+                        <p className="forgot-password text-right">
+                            Dimenticato la <Link to="/login">password?</Link>
+                        </p>
                     </div>
                 </div>
             </div>
-        );
-    }
+            <h1>{loginStatus}</h1>
+        </div>
+    );
 }
 export default LoginSection

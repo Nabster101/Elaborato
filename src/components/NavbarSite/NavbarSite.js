@@ -21,8 +21,8 @@ function NavbarSite(){
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                         <Nav className="mr-auto">
-                            <NavLink to="/home" activeClass="Active" className="nav-link Inactive" id="NavLinks">Home</NavLink>
-                            <NavLink to="/home" activeClass="Active" className="nav-link Inactive" id="NavLinks">Visite</NavLink>
+                            <NavLink to="/home" activeClassName="Active" className="nav-link Inactive" id="NavLinks">Home</NavLink>
+                            <NavLink to="/home" activeClassName="Active" className="nav-link Inactive" id="NavLinks">Visite</NavLink>
                             <NavLink to="/login" activeClassName="Active" className="Inactive nav-link" id="NavLinks">Login</NavLink>
                             <NavLink to="/iscriviti" activeClassName="Active" className="Inactive nav-link" id="NavLinks">Iscriviti</NavLink>
                         </Nav>
