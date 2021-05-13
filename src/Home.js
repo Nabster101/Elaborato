@@ -1,16 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import NavbarHome from "./components/NavbarHome/NavbarHome";
 import CarouselHome from "./components/Carousel/Carousel";
 import Visite from "./components/Visite/Visite";
 import Footer from "./components/Footer/Footer";
+import Axios from "axios";
 
 function Home (){
+
+    const [autenticated, setAuthenticated] = useState( false )
+
+    Axios.defaults.withCredentials = true;
+
+    useEffect(() => {
+        Axios.get("http://localhost:3001/login/check").then((response) => {
+            if (localStorage.getItem('jwt')!== null){
+                setAuthenticated(true)
+            } else {
+                setAuthenticated(false)
+            }
+        })
+    }, []);
+
     return(
         <div>
-            <NavbarHome/>
+            <NavbarHome authenticated={autenticated} />
             <CarouselHome/>
             <Visite/>
-            <Footer/>
+            <Footer authenticated={autenticated}/>
         </div>
     )
 }

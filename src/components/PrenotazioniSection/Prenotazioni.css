@@ -1,0 +1,15 @@
+.PrenotazioniSection{
+    margin-top: 20vh;
+    margin-bottom: 32.9vh;
+}
+
+.AttributeRow{
+    background: #5FA8D3;
+    color: white;
+    text-align: center;
+}
+
+.PrestationsTable{
+    width: 90%;
+    margin: 0 auto;
+}

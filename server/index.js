@@ -4,7 +4,8 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const session = require("express-session")
+const session = require("express-session");
+const jwt = require('jsonwebtoken');
 
 const app = express();
 
@@ -19,16 +20,20 @@ app.use(
 );
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded ({ extended: true }));
+app.use(bodyParser.urlencoded ({ extended: false }));
+
+app.use(bodyParser.json());
+process.env.SECRET_KEY = 'TEST';
+
 
 app.use(
     session({
         key: "userID",
-        secret: "test",
+        secret: "Zu*d9FnRcFUXSnG]`T`yEgcQHYU8m[GDMmtRjc)ve5Q$lxN|0UqSWf)hQmqxyKRbM;pxwbQ6D$Zg7)ySgMqFmncbQZ9whP5wPh",
         resave: false,
         saveUninitialized: false,
         cookie: {
-            expires: 60 * 60 * 24,
+            expires: 60 * 60 * 24 * 24,
         },
     })
 );
@@ -48,23 +53,56 @@ app.post('/iscriviti', (req, res) => {
     const Email = req.body.email;
     const Password = req.body.password;
 
+    let group = new Group(req.body);
+    group.userCF = req.params.CF;
+    group.save(new dataCallbacks(req, res, "Group").insert());
+
     bcrypt.hash(Password, saltRounds, (err, hash) => {
         db.query(
             "INSERT INTO Pazienti (CF, Nome, Cognome, Email, Password) VALUES (?,?,?,?,?)",
             [CF, Nome, Cognome, Email, hash],
             (err, result) =>{
                 console.log(err);
+                res.send(result);
             });
     })
+
 });
 
-app.get("/login", (req, res) => {
+app.get('/prenotazioni', (req,res) => {
+
+    if (req.headers && req.headers.authorization) {
+        let authorization = req.headers.authorization.split(' ')[1],
+            decoded;
+        try {
+            decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+        let codiceFiscale = decoded.cf;
+        // Fetch the user by id
+        db.query(
+            "SELECT p.CF, a.Tipologia AS TipologiaAppuntamento, a.CostoAppuntamento FROM Pazienti p, Appuntamenti a, EsamiEffettuati e WHERE CF = ?;",
+            codiceFiscale,
+            (err, result) =>{
+                res.send(result);
+                console.log(result)
+            }
+        )
+    }
+
+
+
+});
+
+
+app.get("/login/check", (req, res) => {
     if (req.session.user) {
         res.send({loggedIn: true, utente: req.session.user })
     } else {
         res.send({loggedIn: false })
     }
-})
+});
 
 app.post('/login', (req, res) => {
 
@@ -81,13 +119,14 @@ app.post('/login', (req, res) => {
 
             if (result.length > 0){
                 bcrypt.compare(Password, result[0].Password, (error, response) => {
-                    if (response){
-                        req.session.user = result;
-                        console.log(req.session.user);
-                        res.send(result);
-                    } else {
-                        res.send({message: "Email o Password sbagliati"});
-                    }
+                    let token = jwt.sign({cf: result[0].CF }, process.env.SECRET_KEY, {expiresIn: '1h'}, (err, token) => {
+                        if (err) {
+                            console.error(err.message);
+                            res.send({status: err.message})
+                        } else {
+                            res.send({token: token});
+                        }
+                    })
                 })
             }
             else {

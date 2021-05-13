@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll"
 
 
-function Footer (){
+function Footer ({ authenticated }){
     return(
         <div className="FooterSection">
             <Container className="FooterContainer">
@@ -24,12 +24,27 @@ function Footer (){
                                 </Col>
                             </Row>
                             <Row className="justify-content-center">
-                                <Col>
-                                    <Link to="/login" className="GridItem">Login</Link>
-                                </Col>
-                                <Col>
-                                    <Link to="/iscriviti" className="GridItem">Iscriviti</Link>
-                                </Col>
+                                { authenticated ?
+                                    <>
+                                        <Col>
+                                            <Link to="/prenotazione" className="GridItem">Prenotazioni</Link>
+                                        </Col>
+                                        <Col>
+                                            <Link to="/profilo" className="GridItem">Profilo</Link>
+                                        </Col>
+                                    </>
+
+                                    :
+                                    <>
+                                        <Col>
+                                            <Link to="/login" className="GridItem">Login</Link>
+                                        </Col>
+                                        <Col>
+                                            <Link to="/iscriviti" className="GridItem">Iscriviti</Link>
+                                        </Col>
+                                    </>
+                                }
+
                             </Row>
                         </Container>
                     </Col>

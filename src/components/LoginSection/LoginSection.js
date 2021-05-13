@@ -3,6 +3,7 @@ import "./LoginSection.css"
 import Particles from "react-particles-js";
 import {Link} from "react-router-dom";
 import Axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function LoginSection() {
 
@@ -10,15 +11,17 @@ function LoginSection() {
     const [passwordUser, setPasswordUser] = useState("");
     const [loginStatus, setLoginStatus] = useState("");
 
-    const login = () => {
+    const history = useHistory();
+
+    const login = (e) => {
+        e.preventDefault()
         Axios.post("http://localhost:3001/login", {
             emailUser: emailUser,
             passwordUser: passwordUser,
         }).then((response) => {
-            if (response.data.message) {
-                setLoginStatus(response.data.message);
-            } else {
-                setLoginStatus(response.data[0].Email);
+            if (response.data.token) {
+                localStorage.setItem('jwt', response.data.token)
+                setTimeout (() => { history.push("/"); }, 2000);
             }
         });
     };
@@ -81,7 +84,7 @@ function LoginSection() {
                 />
             </div>
             <div className="LoginContainer">
-                <div className="LoginBox">
+                <form className="LoginBox" onSubmit={login}>
                     <div>
                         <h3>Login</h3>
 
@@ -102,14 +105,16 @@ function LoginSection() {
                             </div>
                         </div>
 
-                        <button onClick={login} className="InputFieldButton btn btn-primary btn-block">Entra</button>
+                        <button className="InputFieldButton btn btn-primary btn-block">Entra</button>
+                        <p className="forgot-password text-left">
+                            {loginStatus}
+                        </p>
                         <p className="forgot-password text-right">
                             Dimenticato la <Link to="/login">password?</Link>
                         </p>
                     </div>
-                </div>
+                </form>
             </div>
-            <h1>{loginStatus}</h1>
         </div>
     );
 }
