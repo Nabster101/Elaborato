@@ -53,10 +53,6 @@ app.post('/iscriviti', (req, res) => {
     const Email = req.body.email;
     const Password = req.body.password;
 
-    let group = new Group(req.body);
-    group.userCF = req.params.CF;
-    group.save(new dataCallbacks(req, res, "Group").insert());
-
     bcrypt.hash(Password, saltRounds, (err, hash) => {
         db.query(
             "INSERT INTO Pazienti (CF, Nome, Cognome, Email, Password) VALUES (?,?,?,?,?)",
@@ -66,6 +62,54 @@ app.post('/iscriviti', (req, res) => {
                 res.send(result);
             });
     })
+});
+
+app.post('/prenotazione', (req, res) => {
+    console.log("entrato nel post")
+    if (req.headers && req.headers.authorization) {
+        let authorization = req.headers.authorization.split(' ')[1],
+            decoded;
+        try {
+            decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+        console.log("entrato nel if")
+
+
+        const Giorno = req.body.giorno;
+        const Orario = req.body.orario;
+        const Visita = req.body.visita;
+        const Note = req.body.note;
+
+        let codiceFiscale = decoded.cf;
+        // Fetch the user by id
+        db.query(
+            "INSERT INTO Appuntamenti (dataappuntamento, orarioappuntamento, costoappuntamento, tipologiaappuntamento, note, cod_studiomedico, cod_cf) " +
+            "VALUES (?, ?, NULL, ?, ?, " +
+            "   (SELECT s.ID_StudioMedico FROM StudiMedici s, Assegnazioni a, Odontoiatri o, Appuntamenti ap\n" +
+            "       WHERE s.ID_StudioMedico = a.COD_StudioMedico\n" +
+            "       AND o.Matricola = a.COD_Matricola\n" +
+            "       AND ap.DataAppuntamento = a.DataAssegnazione\n" +
+            "       AND a.DisponibilitaStudio = 1" +
+            "       LIMIT 1), ?);",
+            [Giorno, Orario, Visita, Note, codiceFiscale],
+            (err, result) =>{
+                db.query(
+                    "UPDATE Appuntamenti\n" +
+                    "SET CostoAppuntamento = (SELECT v.Costo\n" +
+                    "                         FROM Visite v\n" +
+                    "                         WHERE v.Tipologia = ?)\n" +
+                    "WHERE CostoAppuntamento IS NULL;",
+                    Visita,
+                )
+                console.log(err);
+                console.log(result)
+                res.send(result);
+        });
+
+
+    }
 
 });
 
@@ -92,6 +136,28 @@ app.get('/prestazioni', (req,res) => {
     }
 });
 
+app.get('/esami-digitali', (req,res) => {
+
+    if (req.headers && req.headers.authorization) {
+        let authorization = req.headers.authorization.split(' ')[1],
+            decoded;
+        try {
+            decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+        let codiceFiscale = decoded.cf;
+        // Fetch the user by id
+        db.query(
+            "SELECT p.CF, ef.Tipologia, ef.DataEsame FROM Pazienti p, EsamiEffettuati ef, EsamiDigitali e WHERE e.ID_Esame = ef.COD_Esame AND p.CF = ef.COD_CF AND p.CF = ?;",
+            codiceFiscale,
+            (err, result) =>{
+                res.send(result);
+                console.log(result)
+            }
+        )
+    }
+});
 
 app.get("/login/check", (req, res) => {
     if (req.session.user) {

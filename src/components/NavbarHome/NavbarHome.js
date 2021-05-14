@@ -53,9 +53,9 @@ function NavbarHome({ authenticated }){
                                             </Dropdown.Toggle>
 
                                             <Dropdown.Menu>
-                                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                                <Dropdown.Item><Link style={{textDecoration: 'none', color: 'black'}} to="/profilo">Profilo</Link></Dropdown.Item>
+                                                <Dropdown.Item><Link style={{textDecoration: 'none', color: 'black'}} to="/esami-digitali">Esami digitali</Link></Dropdown.Item>
+                                                <Dropdown.Item>Log out</Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </NavLink>

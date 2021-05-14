@@ -12,8 +12,6 @@ function PrestazioniSection () {
 
     useEffect(() => {
         Axios.get("http://localhost:3001/prestazioni", { headers: {'Authorization': `Bearer ${localStorage.jwt}`} }).then((response) => {
-            console.log(typeof response)
-            console.log(response)
             setPrestazioni(response.data)
         })
     }, []);
@@ -28,6 +26,7 @@ function PrestazioniSection () {
                     <th>Data appuntamento</th>
                     <th>Orario appuntamento</th>
                     <th>Pagamenti</th>
+                    <th>Numero studio</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,6 +37,7 @@ function PrestazioniSection () {
                             <td>{prestazione.DataAppuntamento}</td>
                             <td>{prestazione.OrarioAppuntamento}</td>
                             <td>€{prestazione.CostoAppuntamento},00</td>
+                            <td>{prestazione.NumeroStudio}</td>
 
                         </tr>
                     ))}

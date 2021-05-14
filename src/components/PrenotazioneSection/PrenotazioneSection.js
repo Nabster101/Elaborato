@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Axios from "axios";
 import Particles from "react-particles-js";
 import "./PrenotazioneSection.css"
@@ -12,17 +12,20 @@ function PrenotazioneSection() {
     const [noteReg, setNoteReg] = useState('')
 
     const history = useHistory();
-
+    const headers = {'Authorization': `Bearer ${localStorage.jwt}`}
+    const data = {
+        giorno: giornoReg,
+        visita: visitaReg,
+        orario: orarioReg,
+        note: noteReg,
+    }
     const register = (e) => {
         e.preventDefault()
-        Axios.post('http://localhost:3001/prenotazione', {
-            giorno: giornoReg,
-            visita: visitaReg,
-            orario: orarioReg,
-            note: noteReg,
+        Axios.post('http://localhost:3001/prenotazione', data,{
+            headers: headers,
         }).then((response) =>{
             console.log(response);
-            history.push("/");
+            history.push("/prestazioni");
         });
     };
 
@@ -100,12 +103,20 @@ function PrenotazioneSection() {
 
                         <div className="form-group">
                             <label>Tipo di visita</label>
-                            <input required={true} type="text" onChange={(e)=> {setVisitaReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo codice fiscale" />
+                            <select required={true} onChange={(e)=> {setVisitaReg(e.target.value)}} className="InputField form-control" id="dropdown">
+                                <option value="">...</option>
+                                <option value="Igiene Dentale">Igiene dentale €20</option>
+                                <option value="Analisi estetica del sorriso">Analisi estetica del sorriso €10</option>
+                                <option value="Applicazione brillantino al dente">Applicazione brillantino al dente €50</option>
+                                <option value="Dentiera mobile">Dentiera mobile €1500-2000</option>
+                                <option value="Dentiera fissa">Dentiera fissa €2000-3000</option>
+                                <option value="Rigenerazione ossea dentale">Rigenerazione ossea dentale €500</option>
+                            </select>
                         </div>
 
                         <div className="form-group">
                             <label>Note</label>
-                            <input required={true} type="text" onChange={(e)=> {setNoteReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo indirizzo email" />
+                            <textarea style={{resize: 'none'}} required={true} type="text" onChange={(e)=> {setNoteReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci eventuali note" cols="10" rows="5" />
                         </div>
 
                         <button className="InputFieldButton btn btn-primary btn-block">Prenota</button>
