@@ -69,7 +69,7 @@ app.post('/iscriviti', (req, res) => {
 
 });
 
-app.get('/prenotazioni', (req,res) => {
+app.get('/prestazioni', (req,res) => {
 
     if (req.headers && req.headers.authorization) {
         let authorization = req.headers.authorization.split(' ')[1],
@@ -82,7 +82,7 @@ app.get('/prenotazioni', (req,res) => {
         let codiceFiscale = decoded.cf;
         // Fetch the user by id
         db.query(
-            "SELECT p.CF, a.Tipologia AS TipologiaAppuntamento, a.CostoAppuntamento FROM Pazienti p, Appuntamenti a, EsamiEffettuati e WHERE CF = ?;",
+            "SELECT p.CF, a.TipologiaAppuntamento, a.CostoAppuntamento,  a.DataAppuntamento, a.OrarioAppuntamento FROM Pazienti p, Appuntamenti a WHERE p.CF = a.COD_CF AND p.CF = ?;",
             codiceFiscale,
             (err, result) =>{
                 res.send(result);
@@ -90,9 +90,6 @@ app.get('/prenotazioni', (req,res) => {
             }
         )
     }
-
-
-
 });
 
 
@@ -113,20 +110,25 @@ app.post('/login', (req, res) => {
         "SELECT * FROM Pazienti WHERE Email = ?;",
         Email,
         (err, result) =>{
+
             if (err) {
                 res.send({err: err});
             }
 
             if (result.length > 0){
                 bcrypt.compare(Password, result[0].Password, (error, response) => {
-                    let token = jwt.sign({cf: result[0].CF }, process.env.SECRET_KEY, {expiresIn: '1h'}, (err, token) => {
-                        if (err) {
-                            console.error(err.message);
-                            res.send({status: err.message})
-                        } else {
-                            res.send({token: token});
-                        }
-                    })
+                    if (response) {
+                        let token = jwt.sign({cf: result[0].CF }, process.env.SECRET_KEY, {expiresIn: '1h'}, (err, token) => {
+                            if (err) {
+                                console.error(err.message);
+                                res.send({status: err.message})
+                            } else {
+                                res.send({token: token, message: "Accesso eseguito"});
+                            }
+                        })
+                    } else {
+                        res.send( { message: "Email o password sbagliata"})
+                    }
                 })
             }
             else {

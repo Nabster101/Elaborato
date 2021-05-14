@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import LoginSection from "./components/LoginSection/LoginSection";
 import NavbarSite from "./components/NavbarSite/NavbarSite";
 import Axios from "axios";
 import FooterSite from "./components/FooterSite/FooterSite";
+import PrenotazioneSection from "./components/PrenotazioneSection/PrenotazioneSection";
 
-function Login (){
+function Prenotazione (){
 
-    const [autenticated, setAuthenticated] = useState( false );
+    const [autenticated, setAuthenticated] = useState( false )
 
     Axios.defaults.withCredentials = true;
 
@@ -23,9 +23,9 @@ function Login (){
     return(
         <div>
             <NavbarSite authenticated={autenticated}/>
-            <LoginSection />
+            <PrenotazioneSection />
             <FooterSite authenticated={autenticated}/>
         </div>
     )
 }
-export default Login
+export default Prenotazione

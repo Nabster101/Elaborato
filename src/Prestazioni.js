@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import NavbarSite from "./components/NavbarSite/NavbarSite";
-import PrenotazioniSection from "./components/PrenotazioniSection/Prenotazioni";
-import Footer from "./components/Footer/Footer";
+import PrestazioniSection from "./components/PrestazioniSection/PrestazioniSection";
 import Axios from "axios";
+import FooterSite from "./components/FooterSite/FooterSite";
 
-function Prenotazioni () {
+function Prestazioni () {
 
     const [autenticated, setAuthenticated] = useState( false );
 
@@ -24,9 +24,9 @@ function Prenotazioni () {
     return(
         <div>
             <NavbarSite authenticated={autenticated}/>
-            <PrenotazioniSection />
-            <Footer authenticated={autenticated} />
+            <PrestazioniSection />
+            <FooterSite authenticated={autenticated} />
         </div>
     )
 }
-export default Prenotazioni
+export default Prestazioni

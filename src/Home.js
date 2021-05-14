@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import NavbarHome from "./components/NavbarHome/NavbarHome";
 import CarouselHome from "./components/Carousel/Carousel";
 import Visite from "./components/Visite/Visite";
-import Footer from "./components/Footer/Footer";
+import FooterHome from "./components/FooterHome/FooterHome";
 import Axios from "axios";
 
 function Home (){
@@ -26,7 +26,7 @@ function Home (){
             <NavbarHome authenticated={autenticated} />
             <CarouselHome/>
             <Visite/>
-            <Footer authenticated={autenticated}/>
+            <FooterHome authenticated={autenticated}/>
         </div>
     )
 }

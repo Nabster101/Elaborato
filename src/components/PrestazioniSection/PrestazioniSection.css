@@ -13,3 +13,12 @@
     width: 90%;
     margin: 0 auto;
 }
+
+.AppuntamentoButtonContainer{
+    text-align: center;
+    margin-top: 10vh;
+}
+
+.AppuntamentoButton{
+    font-weight: 600;
+}

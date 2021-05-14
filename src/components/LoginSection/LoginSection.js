@@ -9,7 +9,7 @@ function LoginSection() {
 
     const [emailUser, setEmailUser] = useState("");
     const [passwordUser, setPasswordUser] = useState("");
-    const [loginStatus, setLoginStatus] = useState("");
+    const [loginStatus, setLoginStatus] = useState('');
 
     const history = useHistory();
 
@@ -19,6 +19,10 @@ function LoginSection() {
             emailUser: emailUser,
             passwordUser: passwordUser,
         }).then((response) => {
+            if (response.data.message){
+                setLoginStatus(response.data.message)
+            }
+
             if (response.data.token) {
                 localStorage.setItem('jwt', response.data.token)
                 setTimeout (() => { history.push("/"); }, 2000);
@@ -90,7 +94,7 @@ function LoginSection() {
 
                         <div className="form-group">
                             <label>Indirizzo email</label>
-                            <input type="email" onChange={(e)=> {setEmailUser(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo indirizzo email" />
+                            <input autoComplete="email" type="email" onChange={(e)=> {setEmailUser(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo indirizzo email" />
                         </div>
 
                         <div className="form-group">

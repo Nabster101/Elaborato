@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from "react";
-import {Table} from "react-bootstrap";
-import "./Prenotazioni.css"
+import {Table,Button} from "react-bootstrap";
+import "./PrestazioniSection.css"
 import Axios from "axios";
-import data from "bootstrap/js/src/dom/data";
+import {Link} from "react-router-dom";
 
-function PrenotazioniSection () {
+function PrestazioniSection () {
 
     const [prestazioni, setPrestazioni] = useState([])
 
     Axios.defaults.withCredentials = true;
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/prenotazioni", { headers: {'Authorization': `Bearer ${localStorage.jwt}`} }).then((response) => {
+        Axios.get("http://localhost:3001/prestazioni", { headers: {'Authorization': `Bearer ${localStorage.jwt}`} }).then((response) => {
             console.log(typeof response)
             console.log(response)
             setPrestazioni(response.data)
@@ -25,6 +25,8 @@ function PrenotazioniSection () {
                 <tr>
                     <th>Codice Fiscale</th>
                     <th>Prestazioni effettuate</th>
+                    <th>Data appuntamento</th>
+                    <th>Orario appuntamento</th>
                     <th>Pagamenti</th>
                 </tr>
                 </thead>
@@ -33,12 +35,20 @@ function PrenotazioniSection () {
                         <tr>
                             <td>{prestazione.CF}</td>
                             <td>{prestazione.TipologiaAppuntamento}</td>
+                            <td>{prestazione.DataAppuntamento}</td>
+                            <td>{prestazione.OrarioAppuntamento}</td>
                             <td>€{prestazione.CostoAppuntamento},00</td>
+
                         </tr>
                     ))}
                 </tbody>
             </Table>
+            <div className="AppuntamentoButtonContainer">
+                <Link to="/prenotazione">
+                    <Button className="AppuntamentoButton">Prenota un appuntamento ora!</Button>
+                </Link>
+            </div>
         </div>
     )
 }
-export default PrenotazioniSection
+export default PrestazioniSection

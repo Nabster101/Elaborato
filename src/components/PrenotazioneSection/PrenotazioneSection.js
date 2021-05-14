@@ -1,35 +1,32 @@
 import React, {useState} from "react";
 import Axios from "axios";
 import Particles from "react-particles-js";
-import "./SignUpSection.css"
+import "./PrenotazioneSection.css"
 import {Link, useHistory} from "react-router-dom";
 
-function SignUpSection() {
+function PrenotazioneSection() {
 
-    const [nameReg, setNameReg] = useState('')
-    const [lastnameReg, setLastNameReg] = useState('')
-    const [cfReg, setCfReg] = useState('')
-    const [emailReg, setEmailReg] = useState('')
-    const [passwordReg, setPasswordReg] = useState('')
-    const [passwordConf, setPasswordConf] = useState('')
+    const [giornoReg, setGiornoReg] = useState('')
+    const [visitaReg, setVisitaReg] = useState('')
+    const [orarioReg, setOrarioReg] = useState('')
+    const [noteReg, setNoteReg] = useState('')
 
     const history = useHistory();
 
     const register = (e) => {
         e.preventDefault()
-        Axios.post('http://localhost:3001/iscriviti', {
-            nome: nameReg,
-            cognome: lastnameReg,
-            cf: cfReg,
-            email: emailReg,
-            password: passwordReg,
+        Axios.post('http://localhost:3001/prenotazione', {
+            giorno: giornoReg,
+            visita: visitaReg,
+            orario: orarioReg,
+            note: noteReg,
         }).then((response) =>{
             console.log(response);
             history.push("/");
         });
     };
 
-     return(
+    return(
         <div className="SignUpSection">
             <div className="test">
                 <Particles
@@ -89,56 +86,33 @@ function SignUpSection() {
             <div className="SignUpContainer">
                 <form className="SignUpBox" onSubmit={register}>
                     <div>
-                        <h3>Iscriviti</h3>
+                        <h3>Prenota ora</h3>
 
                         <div className="form-group">
-                            <label>Nome</label>
-                            <input required={true} type="text" onChange={(e)=> {setNameReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo nome" />
+                            <label>Giorno</label>
+                            <input required={true} type="date" onChange={(e)=> {setGiornoReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo nome" />
                         </div>
 
                         <div className="form-group">
-                            <label>Cognome</label>
-                            <input required={true} type="text" onChange={(e)=> {setLastNameReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo cognome" />
+                            <label>Orario</label>
+                            <input required={true} type="time" onChange={(e)=> {setOrarioReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo cognome" />
                         </div>
 
                         <div className="form-group">
-                            <label>Codice fiscale</label>
-                            <input required={true} type="text" onChange={(e)=> {setCfReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo codice fiscale" />
+                            <label>Tipo di visita</label>
+                            <input required={true} type="text" onChange={(e)=> {setVisitaReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo codice fiscale" />
                         </div>
 
                         <div className="form-group">
-                            <label>Indirizzo email</label>
-                            <input required={true} type="email" onChange={(e)=> {setEmailReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo indirizzo email" />
+                            <label>Note</label>
+                            <input required={true} type="text" onChange={(e)=> {setNoteReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo indirizzo email" />
                         </div>
 
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input required={true} type="password" onChange={(e)=> {setPasswordReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci la tua password" />
-                        </div>
-                        <div className="form-group">
-                            <label>Conferma la password</label>
-                            <input required={true} type="password" onChange={(e)=> {setPasswordConf(e.target.value)}} className="InputField form-control" placeholder="Conferma la password" />
-                        </div>
-
-                        <button className="InputFieldButton btn btn-primary btn-block">Iscriviti</button>
-                        <p className="password-check text-left">
-                            {(passwordReg === passwordConf) ?
-                                <>
-                                </>
-                                :
-                                <>
-                                    Le password non corrsipondono
-                                </>
-
-                            }
-                        </p>
-                        <p className="forgot-password text-right">
-                            Sei già registrato? Fai il <Link>login</Link>
-                        </p>
+                        <button className="InputFieldButton btn btn-primary btn-block">Prenota</button>
                     </div>
                 </form>
             </div>
         </div>
     )
 }
-export default SignUpSection
+export default PrenotazioneSection

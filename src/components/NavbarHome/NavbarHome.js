@@ -45,7 +45,7 @@ function NavbarHome({ authenticated }){
                             { authenticated ?
 
                                 <>
-                                    <NavLink to="/prenotazioni" activeClassName="Active" className="Inactive nav-link" id="NavLinks">Prenotazioni</NavLink>
+                                    <NavLink to="/prestazioni" activeClassName="Active" className="Inactive nav-link" id="NavLinks">Prestazioni</NavLink>
                                     <NavLink to="/profilo" activeClassName="Active" className="Inactive nav-link" id="NavLinks">
                                         <Dropdown>
                                             <Dropdown.Toggle id="NavLinks" as={CustomToggle}>

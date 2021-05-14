@@ -1,5 +1,5 @@
 import React from "react";
-import "./Footer.css"
+import "./FooterHome.css"
 import {Col, Container, Row} from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faTwitter, faFacebook, faLinkedin } from '@fortawesome/free-brands-svg-icons'
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { Link as LinkScroll } from "react-scroll"
 
 
-function Footer ({ authenticated }){
+function FooterHome ({ authenticated }){
     return(
         <div className="FooterSection">
             <Container className="FooterContainer">
@@ -27,7 +27,7 @@ function Footer ({ authenticated }){
                                 { authenticated ?
                                     <>
                                         <Col>
-                                            <Link to="/prenotazione" className="GridItem">Prenotazioni</Link>
+                                            <Link to="/prestazioni" className="GridItem">Prestazioni</Link>
                                         </Col>
                                         <Col>
                                             <Link to="/profilo" className="GridItem">Profilo</Link>
@@ -79,4 +79,4 @@ function Footer ({ authenticated }){
         </div>
     )
 }
-export default Footer
+export default FooterHome

@@ -6,14 +6,16 @@ import 'font-awesome/css/font-awesome.min.css';
 import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
-import Prenotazioni from "./Prenotazioni";
+import Prestazioni from "./Prestazioni";
+import Prenotazione from "./Prenotazione";
 
 function App (){
     return (
         <div className="App">
           <Router>
               <Switch>
-                  <Route path="/prenotazioni"><Prenotazioni /></Route>
+                  <Route path="/prestazioni"><Prestazioni /></Route>
+                  <Route path="/prenotazione"><Prenotazione /></Route>
                   <Route path="/login"><Login /></Route>
                   <Route path="/iscriviti"><Signup /></Route>
                   <Route path="/"><Home /></Route>

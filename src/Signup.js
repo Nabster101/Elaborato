@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import SignUpSection from "./components/SignUpSection/SignUpSection";
 import NavbarSite from "./components/NavbarSite/NavbarSite";
-import Footer from "./components/Footer/Footer";
 import Axios from "axios";
+import FooterSite from "./components/FooterSite/FooterSite";
 
 function Signup (){
 
@@ -24,7 +24,7 @@ function Signup (){
         <div>
             <NavbarSite authenticated={autenticated}/>
             <SignUpSection />
-            <Footer authenticated={autenticated}/>
+            <FooterSite authenticated={autenticated}/>
         </div>
     )
 }
