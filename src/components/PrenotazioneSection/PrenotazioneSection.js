@@ -3,6 +3,7 @@ import Axios from "axios";
 import Particles from "react-particles-js";
 import "./PrenotazioneSection.css"
 import {Link, useHistory} from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
 
 function PrenotazioneSection() {
 
@@ -10,6 +11,9 @@ function PrenotazioneSection() {
     const [visitaReg, setVisitaReg] = useState('')
     const [orarioReg, setOrarioReg] = useState('')
     const [noteReg, setNoteReg] = useState('')
+
+    const today = `${new Date().getFullYear()}-0${new Date().getMonth()+1}-${new Date().getDate()}`;
+    console.log(today)
 
     const history = useHistory();
     const headers = {'Authorization': `Bearer ${localStorage.jwt}`}
@@ -93,12 +97,12 @@ function PrenotazioneSection() {
 
                         <div className="form-group">
                             <label>Giorno</label>
-                            <input required={true} type="date" onChange={(e)=> {setGiornoReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo nome" />
+                            <input id="GiornoAppuntamento" required={true} type="date" min={today} onChange={(e)=> {setGiornoReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci la data" />
                         </div>
 
                         <div className="form-group">
                             <label>Orario</label>
-                            <input required={true} type="time" onChange={(e)=> {setOrarioReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo cognome" />
+                            <input id="OrarioAppuntamento" required={true} type="time" min="08:00" max="18:00" onChange={(e)=> {setOrarioReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo cognome" />
                         </div>
 
                         <div className="form-group">

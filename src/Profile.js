@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import Axios from "axios";
 import NavbarSite from "./components/NavbarSite/NavbarSite";
-import Profile from "./Profile";
 import FooterSite from "./components/FooterSite/FooterSite";
+import ProfileSection from "./components/ProfileSection/ProfileSection";
 
-function Home (){
+function Profile (){
 
     const [autenticated, setAuthenticated] = useState( false )
 
@@ -23,9 +23,9 @@ function Home (){
     return(
         <div>
             <NavbarSite authenticated={autenticated} />
-            <Profile/>
+            <ProfileSection />
             <FooterSite authenticated={autenticated}/>
         </div>
     )
 }
-export default Home
+export default Profile

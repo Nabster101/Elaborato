@@ -2,6 +2,7 @@ import React from "react";
 import "./Visite.css"
 import {Card, Col, Container, Row, Button } from "react-bootstrap";
 import VisitCard2 from "../images/VisitCard2.jpg"
+import {Link} from "react-router-dom";
 
 function Visite (){
     return(
@@ -10,7 +11,7 @@ function Visite (){
                 <Row>
                     <Col>
                         <h1>Prenota una visita</h1>
-                        <div className="Seperators"></div>
+                        <div className="Seperators" />
                         <div className="VisiteText">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque cupiditate deleniti eius est id in itaque iure, nihil officiis placeat, quibusdam quisquam quos, recusandae reiciendis rem repellat repellendus voluptate?</div>
 
                     </Col>
@@ -23,12 +24,12 @@ function Visite (){
                             <Card key={i} style={{width: "300px"}}>
                                 <Card.Img variant="top" src={VisitCard2} />
                                 <Card.Body>
-                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Title>Igiene dentale</Card.Title>
                                     <Card.Text>
-                                        Some quick example text to build on the card title and make up the bulk of
-                                        the card's content.
+                                        Previene la creazione di patologie oro-dentali, con la cura dell'igiene orale!
+                                        Prenota ora per ricevere un trattamento fantastico del tuo sorriso. Tornerai a brillare!
                                     </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
+                                    <Button variant="primary"><Link style={{textDecoration: 'none', color: 'white'}} to='/prenotazione'>Prenota ora</Link></Button>
                                 </Card.Body>
                             </Card>
                         </Col>
@@ -40,12 +41,11 @@ function Visite (){
                             <Card key={i} style={{width: "300px"}}>
                                 <Card.Img variant="top" src={VisitCard2}  />
                                 <Card.Body>
-                                    <Card.Title>Card Title</Card.Title>
+                                    <Card.Title>Dentiera mobile</Card.Title>
                                     <Card.Text>
-                                        Some quick example text to build on the card title and make up the bulk of
-                                        the card's content.
+                                        Grazie alla professionalità dei nostri odontoiatri faremo un piccolo e veloce intervento per aggiustare l'assetto dei tuoi denti!
                                     </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
+                                    <Button variant="primary"><Link style={{textDecoration: 'none', color: 'white'}} to='/prenotazione'>Prenota ora</Link></Button>
                                 </Card.Body>
                             </Card>
                         </Col>

@@ -1,0 +1,49 @@
+.ProfilePicture{
+    border-radius: 50%;
+    border: 2px black solid;
+    vertical-align: middle;
+    height: 250px;
+    object-fit: cover;
+    width: 70%;
+}
+
+.ProfileContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    position: absolute;
+    bottom: 25%;
+    left: 18%;
+}
+
+.ProfileBox{
+    width: 100%;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+    transition: all .3s;
+}
+
+.ProfileTitle{
+    font-weight: 600;
+    font-size: 35px;
+}
+
+.middleButton{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.Percentage{
+    font-size: 35px;
+    color: green;
+    font-weight: 600;
+    text-align: center;
+}
+
+.TextContainer{
+    margin-top: 5vh;
+}

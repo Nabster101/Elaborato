@@ -1,6 +1,6 @@
 import React from 'react'
 import {Navbar, Nav, Container, Dropdown} from 'react-bootstrap'
-import {Link, NavLink} from "react-router-dom"
+import {Link, NavLink, useHistory} from "react-router-dom"
 import "./NavbarSite.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
@@ -20,6 +20,8 @@ function NavbarSite({ authenticated }){
             <FontAwesomeIcon id="ChevronIcon" icon={faChevronDown}/>
         </Link>
     ));
+
+    const history = useHistory();
 
     return(
         <div className="NavbarSection">
@@ -54,7 +56,7 @@ function NavbarSite({ authenticated }){
                                             <Dropdown.Menu>
                                                 <Dropdown.Item><Link style={{textDecoration: 'none', color: 'black'}} to="/profilo">Profilo</Link></Dropdown.Item>
                                                 <Dropdown.Item><Link style={{textDecoration: 'none', color: 'black'}} to="/esami-digitali">Esami digitali</Link></Dropdown.Item>
-                                                <Dropdown.Item>Log out</Dropdown.Item>
+                                                <Dropdown.Item><Link style={{textDecoration: 'none', color: 'black'}} onClick={() => {localStorage.clear(); history.push("/");}}>Log out</Link></Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
 

@@ -33,11 +33,11 @@ function PrestazioniSection () {
                     {prestazioni.map(prestazione => (
                         <tr>
                             <td>{prestazione.CF}</td>
-                            <td>{prestazione.TipologiaAppuntamento}</td>
-                            <td>{prestazione.DataAppuntamento}</td>
-                            <td>{prestazione.OrarioAppuntamento}</td>
-                            <td>€{prestazione.CostoAppuntamento},00</td>
-                            <td>{prestazione.NumeroStudio}</td>
+                            <td style={{textAlign: 'center'}}>{prestazione.TipologiaAppuntamento}</td>
+                            <td style={{textAlign: 'center'}}>{prestazione.DataAppuntamento.split('T')[0]}</td>
+                            <td style={{textAlign: 'center'}}>{prestazione.OrarioAppuntamento}</td>
+                            <td style={{textAlign: 'center'}}>€{prestazione.CostoAppuntamento},00</td>
+                            <td style={{textAlign: 'center'}}>{prestazione.NumeroStudio}</td>
 
                         </tr>
                     ))}

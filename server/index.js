@@ -103,6 +103,20 @@ app.post('/prenotazione', (req, res) => {
                     "WHERE CostoAppuntamento IS NULL;",
                     Visita,
                 )
+                db.query(
+                    "\n" +
+                    "INSERT INTO Assegnazioni (DisponibilitaStudio, DataAssegnazione, COD_Matricola, COD_StudioMedico) VALUES (1, ?, " +
+                    "(SELECT o.Matricola FROM Odontoiatri o, Appuntamenti a, Visite v\n" +
+                    "   WHERE v.ID_Visita = o.COD_Visita\n" +
+                    "   AND v.SpecRichiesta = o.Specializzazione\n" +
+                    "   AND a.TipologiaAppuntamento = ? LIMIT 1),\n" +
+                    "(SELECT s.ID_StudioMedico FROM StudiMedici s, Assegnazioni a, Odontoiatri o, Appuntamenti ap\n" +
+                    "   WHERE s.ID_StudioMedico = a.COD_StudioMedico\n" +
+                    "   AND o.Matricola = a.COD_Matricola\n" +
+                    "   AND ap.DataAppuntamento = a.DataAssegnazione\n" +
+                    "   AND a.DisponibilitaStudio = 1 LIMIT 1));",
+                    [Giorno, Visita]
+                )
                 console.log(err);
                 console.log(result)
                 res.send(result);
@@ -111,6 +125,30 @@ app.post('/prenotazione', (req, res) => {
 
     }
 
+});
+
+
+app.get('/profilo', (req,res) => {
+
+    if (req.headers && req.headers.authorization) {
+        let authorization = req.headers.authorization.split(' ')[1],
+            decoded;
+        try {
+            decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+        let codiceFiscale = decoded.cf;
+        // Fetch the user by id
+        db.query(
+            "SELECT p.CF, p.Nome , p.Cognome FROM Pazienti p WHERE p.CF = ?;",
+            codiceFiscale,
+            (err, result) =>{
+                res.send(result);
+                console.log(result)
+            }
+        )
+    }
 });
 
 app.get('/prestazioni', (req,res) => {
@@ -126,7 +164,7 @@ app.get('/prestazioni', (req,res) => {
         let codiceFiscale = decoded.cf;
         // Fetch the user by id
         db.query(
-            "SELECT p.CF, a.TipologiaAppuntamento, a.CostoAppuntamento,  a.DataAppuntamento, a.OrarioAppuntamento FROM Pazienti p, Appuntamenti a WHERE p.CF = a.COD_CF AND p.CF = ?;",
+            "SELECT p.CF, a.TipologiaAppuntamento, a.CostoAppuntamento,  a.DataAppuntamento, a.OrarioAppuntamento, a.COD_StudioMedico AS NumeroStudio FROM Pazienti p, Appuntamenti a WHERE p.CF = a.COD_CF AND p.CF = ?;",
             codiceFiscale,
             (err, result) =>{
                 res.send(result);
@@ -184,7 +222,7 @@ app.post('/login', (req, res) => {
             if (result.length > 0){
                 bcrypt.compare(Password, result[0].Password, (error, response) => {
                     if (response) {
-                        let token = jwt.sign({cf: result[0].CF }, process.env.SECRET_KEY, {expiresIn: '1h'}, (err, token) => {
+                        let token = jwt.sign({ cf: result[0].CF }, process.env.SECRET_KEY, {expiresIn: '1h'}, (err, token) => {
                             if (err) {
                                 console.error(err.message);
                                 res.send({status: err.message})

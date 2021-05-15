@@ -5,6 +5,8 @@ import {Link, NavLink} from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./NavbarHome.css"
 import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
+
 
 function NavbarHome({ authenticated }){
 
@@ -22,6 +24,8 @@ function NavbarHome({ authenticated }){
             <FontAwesomeIcon id="ChevronIcon" icon={faChevronDown}/>
         </Link>
     ));
+
+    const history = useHistory();
 
     return(
         <div className="NavbarSection">
@@ -55,7 +59,7 @@ function NavbarHome({ authenticated }){
                                             <Dropdown.Menu>
                                                 <Dropdown.Item><Link style={{textDecoration: 'none', color: 'black'}} to="/profilo">Profilo</Link></Dropdown.Item>
                                                 <Dropdown.Item><Link style={{textDecoration: 'none', color: 'black'}} to="/esami-digitali">Esami digitali</Link></Dropdown.Item>
-                                                <Dropdown.Item>Log out</Dropdown.Item>
+                                                <Dropdown.Item><Link style={{textDecoration: 'none', color: 'black'}} onClick={() => {localStorage.clear(); window.location.reload();}}>Log out</Link></Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </NavLink>
