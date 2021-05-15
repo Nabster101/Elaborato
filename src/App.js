@@ -9,6 +9,7 @@ import Signup from "./Signup";
 import Prestazioni from "./Prestazioni";
 import Prenotazione from "./Prenotazione";
 import EsamiDigitali from "./EsamiDigitali";
+import Profile from "./Profile";
 
 function App (){
     return (
@@ -16,6 +17,7 @@ function App (){
           <Router>
               <Switch>
                   <Route path="/prestazioni"><Prestazioni /></Route>
+                  <Route path="/profilo"><Profile /></Route>
                   <Route path="/esami-digitali"><EsamiDigitali /></Route>
                   <Route path="/prenotazione"><Prenotazione /></Route>
                   <Route path="/login"><Login /></Route>
