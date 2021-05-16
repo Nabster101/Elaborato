@@ -17,8 +17,8 @@ function PrestazioniSection () {
     }, []);
 
     return(
-        <div className="PrenotazioniSection">
-            <Table className="PrestationsTable" striped bordered hover>
+        <div className="PrestazioniSection">
+            <Table className="PrestazioniTable" striped bordered hover>
                 <thead className="AttributeRow">
                 <tr>
                     <th>Codice Fiscale</th>

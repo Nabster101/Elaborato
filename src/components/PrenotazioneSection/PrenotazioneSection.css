@@ -2,7 +2,7 @@
     background: #242840;
 }
 
-.SignUpContainer{
+.PrenotazioneContainer{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -12,7 +12,7 @@
     left: 37%;
 }
 
-.SignUpBox{
+.PrenotazioneBox{
     width: 450px;
     margin: auto;
     background: #ffffff;
@@ -23,7 +23,7 @@
 }
 
 
-.SignUpContainer h3 {
+.PrenotazioneContainer h3 {
     text-align: center;
     margin: 0;
     line-height: 1;
@@ -66,11 +66,17 @@
     background: white;
 }
 
-
-@media screen and (min-width: 1400px){
-    .SignUpContainer{
-        bottom: 22%;
-        left: 38%;
+@media screen and (min-width: 1400px) {
+    .PrenotazioniSection .PrenotazioneContainer{
+        top: 35%;
+        left: 37%;
+    }
+    .PrenotazioniSection #tsparticles{
+        width: 120%;
+        height: 125vh;
+    }
+    .PrenotazioniSection{
+        overflow: hidden;
     }
 }
 

@@ -29,7 +29,7 @@ function Visite (){
                                         Previene la creazione di patologie oro-dentali, con la cura dell'igiene orale!
                                         Prenota ora per ricevere un trattamento fantastico del tuo sorriso. Tornerai a brillare!
                                     </Card.Text>
-                                    <Button variant="primary"><Link style={{textDecoration: 'none', color: 'white'}} to='/prenotazione'>Prenota ora</Link></Button>
+                                    <Button><Link style={{textDecoration: 'none', color: 'white'}} to='/prenotazione'>Prenota ora</Link></Button>
                                 </Card.Body>
                             </Card>
                         </Col>

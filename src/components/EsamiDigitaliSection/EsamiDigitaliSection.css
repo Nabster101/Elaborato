@@ -1,0 +1,18 @@
+.EsamiDigitaliSection{
+    margin-top: 20vh;
+    margin-bottom: 16vh;
+}
+
+.EsamiDigitaliTable{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.EsamiDigitaliButtonContainer{
+    text-align: center;
+    margin-top: 10vh;
+}
+
+.EsamiDigitaliButton{
+    font-weight: 600;
+}

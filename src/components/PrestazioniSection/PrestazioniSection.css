@@ -1,6 +1,7 @@
-.PrenotazioniSection{
+
+.PrestazioniSection{
     margin-top: 20vh;
-    margin-bottom: 32.9vh;
+    margin-bottom: 15vh;
 }
 
 .AttributeRow{
@@ -9,7 +10,7 @@
     text-align: center;
 }
 
-.PrestationsTable{
+.PrestazioniTable{
     width: 90%;
     margin: 0 auto;
 }

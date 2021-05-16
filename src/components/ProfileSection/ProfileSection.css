@@ -47,3 +47,10 @@
 .TextContainer{
     margin-top: 5vh;
 }
+
+@media screen and (min-width: 1400px){
+   .ProfileContainer{
+       left: 8%;
+       bottom: 21%;
+   }
+}

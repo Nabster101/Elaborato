@@ -34,7 +34,7 @@ function PrenotazioneSection() {
     };
 
     return(
-        <div className="SignUpSection">
+        <div className="PrenotazioniSection">
             <div className="test">
                 <Particles
                     params={{
@@ -90,8 +90,8 @@ function PrenotazioneSection() {
                     }}
                 />
             </div>
-            <div className="SignUpContainer">
-                <form className="SignUpBox" onSubmit={register}>
+            <div className="PrenotazioneContainer">
+                <form className="PrenotazioneBox" onSubmit={register}>
                     <div>
                         <h3>Prenota ora</h3>
 

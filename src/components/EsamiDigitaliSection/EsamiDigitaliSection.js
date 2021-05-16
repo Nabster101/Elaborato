@@ -17,8 +17,8 @@ function EsamiDigitaliSection () {
     }, []);
 
     return(
-        <div className="PrenotazioniSection">
-            <Table className="PrestationsTable" striped bordered hover>
+        <div className="EsamiDigitaliSection">
+            <Table className="EsamiDigitaliTable" striped bordered hover>
                 <thead className="AttributeRow">
                 <tr>
                     <th>Codice Fiscale</th>
@@ -31,11 +31,16 @@ function EsamiDigitaliSection () {
                     <tr>
                         <td>{esame.CF}</td>
                         <td>{esame.Tipologia}</td>
-                        <td>{esame.DataEsame}</td>
+                        <td>{esame.DataEsame.split('T')[0]}</td>
                     </tr>
                 ))}
                 </tbody>
             </Table>
+            <div className="EsamiDigitaliButtonContainer">
+                <Link to="/esami-digitali/aggiunta">
+                    <Button className="EsamiDigitaliButton">Aggiungi un esame digitale fatto in precedenza</Button>
+                </Link>
+            </div>
         </div>
     )
 }

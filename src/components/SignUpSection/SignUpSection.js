@@ -133,7 +133,7 @@ function SignUpSection() {
                             }
                         </p>
                         <p className="forgot-password text-right">
-                            Sei già registrato? Fai il <Link>login</Link>
+                            Sei già registrato? Fai il <Link to="/login">login</Link>
                         </p>
                     </div>
                 </form>
