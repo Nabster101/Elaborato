@@ -120,7 +120,7 @@ function PrenotazioneSection() {
 
                         <div className="form-group">
                             <label>Note</label>
-                            <textarea style={{resize: 'none'}} required={true} type="text" onChange={(e)=> {setNoteReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci eventuali note" cols="10" rows="5" />
+                            <textarea style={{resize: 'none'}} required={false} type="text" onChange={(e)=> {setNoteReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci eventuali note" cols="10" rows="5" />
                         </div>
 
                         <button className="InputFieldButton btn btn-primary btn-block">Prenota</button>
