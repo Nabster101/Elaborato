@@ -18,7 +18,7 @@ function PrenotazioneSection() {
     const history = useHistory();
     const headers = {'Authorization': `Bearer ${localStorage.jwt}`}
     const data = {
-        giorno: giornoReg,
+        giorno: `${giornoReg.split("-")[0]}-${giornoReg.split("-")[1]}-${parseInt(giornoReg.split("-")[2])+1}`,
         visita: visitaReg,
         orario: orarioReg,
         note: noteReg,
@@ -102,7 +102,18 @@ function PrenotazioneSection() {
 
                         <div className="form-group">
                             <label>Orario</label>
-                            <input id="OrarioAppuntamento" required={true} type="time" min="08:00" max="18:00" onChange={(e)=> {setOrarioReg(e.target.value)}} className="InputField form-control" placeholder="Inserisci il tuo cognome" />
+                            <select id="dropdown" required={true} onChange={(e)=> {setOrarioReg(e.target.value)}} className="InputField form-control" >
+                                <option value="8:00">8:00</option>
+                                <option value="9:00">9:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                            </select>
                         </div>
 
                         <div className="form-group">

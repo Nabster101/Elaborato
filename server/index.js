@@ -105,17 +105,19 @@ app.post('/prenotazione', (req, res) => {
                 )
                 db.query(
                     "\n" +
-                    "INSERT INTO Assegnazioni (DisponibilitaStudio, DataAssegnazione, COD_Matricola, COD_StudioMedico) VALUES (1, ?, " +
-                    "(SELECT o.Matricola FROM Odontoiatri o, Appuntamenti a, Visite v\n" +
+                    "INSERT INTO Assegnazioni (DisponibilitaStudio, DataAssegnazione, COD_Matricola, COD_StudioMedico, OrarioAssegnazione) VALUES (1, ?, " +
+                    "(SELECT o.Matricola FROM Odontoiatri o, Appuntamenti a, Visite v, StudiMedici s\n" +
                     "   WHERE v.ID_Visita = o.COD_Visita\n" +
                     "   AND v.SpecRichiesta = o.Specializzazione\n" +
-                    "   AND a.TipologiaAppuntamento = ? LIMIT 1),\n" +
+                    "   AND v.Tipologia = a.TipologiaAppuntamento\n" +
+                    "   AND a.TipologiaAppuntamento = ?\n" +
+                    "   LIMIT 1),\n" +
                     "(SELECT s.ID_StudioMedico FROM StudiMedici s, Assegnazioni a, Odontoiatri o, Appuntamenti ap\n" +
                     "   WHERE s.ID_StudioMedico = a.COD_StudioMedico\n" +
                     "   AND o.Matricola = a.COD_Matricola\n" +
                     "   AND ap.DataAppuntamento = a.DataAssegnazione\n" +
-                    "   AND a.DisponibilitaStudio = 1 LIMIT 1));",
-                    [Giorno, Visita]
+                    "   AND a.DisponibilitaStudio = 1 LIMIT 1), ? );",
+                    [Giorno, Visita, Orario]
                 )
                 console.log(err);
                 console.log(result)
@@ -164,7 +166,7 @@ app.get('/prestazioni', (req,res) => {
         let codiceFiscale = decoded.cf;
         // Fetch the user by id
         db.query(
-            "SELECT p.CF, a.TipologiaAppuntamento, a.CostoAppuntamento,  a.DataAppuntamento, a.OrarioAppuntamento, a.COD_StudioMedico AS NumeroStudio FROM Pazienti p, Appuntamenti a WHERE p.CF = a.COD_CF AND p.CF = ?;",
+            "SELECT ass.ID_Assegnazione, p.CF, a.TipologiaAppuntamento, a.CostoAppuntamento,  a.DataAppuntamento, a.OrarioAppuntamento FROM Pazienti p, Appuntamenti a, Assegnazioni ass WHERE p.CF = a.COD_CF AND p.CF = ?;",
             codiceFiscale,
             (err, result) =>{
                 res.send(result);
@@ -173,6 +175,32 @@ app.get('/prestazioni', (req,res) => {
         )
     }
 });
+
+app.post("/prestazione/rimozione", (req, res) => {
+    console.log("DVX")
+    if (req.headers && req.headers.authorization) {
+        let authorization = req.headers.authorization.split(' ')[1],
+            decoded;
+        try {
+            decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+        let codiceFiscale = decoded.cf;
+        const IDass = req.body.IDeliminazione;
+        console.log(IDass)
+        // Fetch the user by id
+        db.query(
+            "DELETE FROM appuntamenti WHERE COD_CF = ?; DELETE FROM assegnazioni WHERE ID_Assegnazione = ?;",
+            [codiceFiscale, IDass],
+            (err, result) =>{
+                res.send(result);
+                console.log(result)
+                console.log("HSVCLVCHKDS ")
+            }
+        )
+    }
+})
 
 app.get('/esami-digitali', (req,res) => {
 

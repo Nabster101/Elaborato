@@ -23,3 +23,8 @@
 .AppuntamentoButton{
     font-weight: 600;
 }
+
+input:disabled{
+    background-color: white !important;
+    color: white !important;
+}
