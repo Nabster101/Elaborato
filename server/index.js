@@ -104,6 +104,11 @@ app.post('/prenotazione', (req, res) => {
                     Visita,
                 )
                 db.query(
+                    "UPDATE Appuntamenti\n" +
+                    "SET DataAppuntamento = (SELECT CAST( DATE_SUB(DataAppuntamento, INTERVAL 1 DAY) AS Date ))\n" +
+                    "WHERE DataAppuntamento != NULL;"
+                )
+                db.query(
                     "\n" +
                     "INSERT INTO Assegnazioni (DisponibilitaStudio, DataAssegnazione, COD_Matricola, COD_StudioMedico, OrarioAssegnazione) VALUES (1, ?, " +
                     "(SELECT o.Matricola FROM Odontoiatri o, Appuntamenti a, Visite v, StudiMedici s\n" +
@@ -166,7 +171,7 @@ app.get('/prestazioni', (req,res) => {
         let codiceFiscale = decoded.cf;
         // Fetch the user by id
         db.query(
-            "SELECT ass.ID_Assegnazione, p.CF, a.TipologiaAppuntamento, a.CostoAppuntamento,  a.DataAppuntamento, a.OrarioAppuntamento FROM Pazienti p, Appuntamenti a, Assegnazioni ass WHERE p.CF = a.COD_CF AND p.CF = ?;",
+            "SELECT p.CF, a.TipologiaAppuntamento, a.CostoAppuntamento,  (SELECT CAST( DATE_ADD(a.DataAppuntamento, INTERVAL 1 DAY) AS Date )) AS DataAppuntamento, a.OrarioAppuntamento FROM Pazienti p, Appuntamenti a WHERE p.CF = a.COD_CF AND p.CF = ?;",
             codiceFiscale,
             (err, result) =>{
                 res.send(result);
@@ -215,8 +220,36 @@ app.get('/esami-digitali', (req,res) => {
         let codiceFiscale = decoded.cf;
         // Fetch the user by id
         db.query(
-            "SELECT p.CF, ef.Tipologia, ef.DataEsame FROM Pazienti p, EsamiEffettuati ef, EsamiDigitali e WHERE e.ID_Esame = ef.COD_Esame AND p.CF = ef.COD_CF AND p.CF = ?;",
+            "SELECT p.CF, ef.Tipologia, (SELECT CAST( DATE_ADD(ef.DataEsame, INTERVAL 1 DAY) AS Date )) AS 'DataEsame' FROM Pazienti p, EsamiEffettuati ef, EsamiDigitali e WHERE e.ID_Esame = ef.COD_Esame AND p.CF = ef.COD_CF AND p.CF = ?;",
             codiceFiscale,
+            (err, result) =>{
+                res.send(result);
+                console.log(result);
+            }
+        )
+    }
+});
+
+app.post('/aggiunta-esami-digitali', (req, res) => {
+    if (req.headers && req.headers.authorization) {
+        let authorization = req.headers.authorization.split(' ')[1],
+            decoded;
+        try {
+            decoded = jwt.verify(authorization, process.env.SECRET_KEY);
+        } catch (e) {
+            return res.status(401).send('unauthorized');
+        }
+
+        const Esame = req.body.esame
+        const Data = req.body.giorno
+
+        let codiceFiscale = decoded.cf;
+        // Fetch the user by id
+        db.query(
+            "INSERT INTO EsamiEffettuati (DataEsame, Tipologia, COD_CF, COD_Esame) VALUES (?, ?, ?, " +
+            "   (SELECT ed.ID_Esame FROM EsamiDigitali ed\n" +
+            "       WHERE ed.Tipologia = ?));",
+            [Data, Esame, codiceFiscale, Esame],
             (err, result) =>{
                 res.send(result);
                 console.log(result)
@@ -224,6 +257,7 @@ app.get('/esami-digitali', (req,res) => {
         )
     }
 });
+
 
 app.get("/login/check", (req, res) => {
     if (req.session.user) {

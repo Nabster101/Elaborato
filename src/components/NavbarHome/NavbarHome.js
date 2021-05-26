@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./NavbarHome.css"
 import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
+import Logo from "../images/LOGO v1.png";
 
 
 function NavbarHome({ authenticated }){
@@ -34,7 +35,7 @@ function NavbarHome({ authenticated }){
                     <Navbar.Brand id="NavbarText" href="/home">
                         <img
                             alt=""
-                            src="/logo.svg"
+                            src={Logo}
                             width="30"
                             height="30"
                             className="d-inline-block align-top"

@@ -4,6 +4,7 @@ import {Link, NavLink, useHistory} from "react-router-dom"
 import "./NavbarSite.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronDown} from "@fortawesome/free-solid-svg-icons";
+import Logo from "../images/LOGO v1.png";
 
 function NavbarSite({ authenticated }){
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -30,7 +31,7 @@ function NavbarSite({ authenticated }){
                     <Navbar.Brand id="NavbarText" href="/home">
                         <img
                             alt=""
-                            src="/logo.svg"
+                            src={Logo}
                             width="30"
                             height="30"
                             className="d-inline-block align-top"

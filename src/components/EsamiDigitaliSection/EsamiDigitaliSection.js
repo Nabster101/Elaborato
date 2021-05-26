@@ -13,6 +13,7 @@ function EsamiDigitaliSection () {
     useEffect(() => {
         Axios.get("http://localhost:3001/esami-digitali", { headers: {'Authorization': `Bearer ${localStorage.jwt}`} }).then((response) => {
             setEsami(response.data)
+            console.log(esami)
         })
     }, []);
 
@@ -37,7 +38,7 @@ function EsamiDigitaliSection () {
                 </tbody>
             </Table>
             <div className="EsamiDigitaliButtonContainer">
-                <Link to="/esami-digitali/aggiunta">
+                <Link to="/aggiunta-esami-digitali">
                     <Button className="EsamiDigitaliButton">Aggiungi un esame digitale fatto in precedenza</Button>
                 </Link>
             </div>
