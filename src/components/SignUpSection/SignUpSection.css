@@ -7,9 +7,7 @@
     justify-content: center;
     flex-direction: column;
     text-align: left;
-    position: absolute;
-    top: 56%;
-    left: 37%;
+    margin: 20vh auto 20vh auto;
 }
 
 .SignUpBox{
